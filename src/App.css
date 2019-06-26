@@ -13,12 +13,19 @@ body {
 }
 
 .card-body {
+  transition: all 0.2s;
+  box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border-radius: 5px;
   width: 400px;
   height: 150px;
-  background-color: white;
-  border: 1px solid black;
   margin: 10px;
   position: relative;
+}
+
+.card-body:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.05);
 }
 
 .card-time {

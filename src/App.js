@@ -1,35 +1,7 @@
 import React from 'react';
 import './App.css';
 import { API_KEY } from "./config";
-const Card = (props) => {
-  const getEmoji = () => {
-    const w = props.mainWeather;
-    const t = parseInt(props.time);
-    if (w === "Clouds") {
-      return "☁️";
-    } else if (w === "Rain") {
-      return "🌧️";
-    } else if (w === "Sun") {
-      return (t > 0 && t < 6) ? "🌙" : "☀️";
-    } else if (w === "Clear") {
-      return (t > 0 && t < 6) ? "🌙" : "☀️"; // "🌈" "🌌";
-    } else if (w === "Snow") {
-      return "❄️";
-    } else if (w === "Extreme") {
-      return "🌩️";
-    }
-  };
-  return (
-    <div className="card-body" style={{ background: props.backgroundColor }}>
-      <h2 className="card-time">{props.time}</h2>
-      <span className="card-date">{props.date}</span>
-      <span className="card-weather-emoji" role="img" title={props.weather} aria-label={props.weather}>{getEmoji()}</span>
-      <div className="card-degree">
-        <span className="card-degree">{props.temp}°</span> <span className="card-separator">|</span> <span className="card-min-degree">{props.minTemp}°</span>
-      </div>
-    </div>
-  );
-};
+import { Card } from "./Card";
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -96,7 +68,8 @@ class App extends React.Component {
       <div className="text-center">
         <h1>{this.state.city && this.state.city.name && this.state.city.name}</h1>
         <div className="container">
-          {this.state.list && this.state.list.map((w, index) => <Card key={index} backgroundColor={this.getBackgroundColor(this.getTime(w.dt))} date={this.getDate(w.dt)} emoji={this.getEmoji(w.weather[0].main, this.getTime(w.dt))} mainWeather={w.weather[0].main} maxTemp={w.main.temp_max} minTemp={w.main.temp_min} temp={w.main.temp} time={this.getTime(w.dt)} weather={w.weather[0].description} />)}
+          {this.state.list && this.state.list.map((w, index) =>
+            <Card key={index} backgroundColor={this.getBackgroundColor(this.getTime(w.dt))} date={this.getDate(w.dt)} emoji={this.getEmoji(w.weather[0].main, this.getTime(w.dt))} mainWeather={w.weather[0].main} maxTemp={w.main.temp_max} minTemp={w.main.temp_min} temp={w.main.temp} time={this.getTime(w.dt)} weather={w.weather[0].description} />)}
         </div>
       </div>
     );

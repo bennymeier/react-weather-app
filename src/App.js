@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { API_KEY } from "./config";
 import { Card } from "./Card";
+const City = (props) => <h1><span role="img" title={props.city} aria-label="Round Pushpin">📍</span> {props.city}</h1>;
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -66,7 +67,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="text-center">
-        <h1>{this.state.city && this.state.city.name && this.state.city.name}</h1>
+        {this.state.city && this.state.city.name && <City city={this.state.city.name} />}
         <div className="container">
           {this.state.list && this.state.list.map((w, index) =>
             <Card key={index} backgroundColor={this.getBackgroundColor(this.getTime(w.dt))} date={this.getDate(w.dt)} emoji={this.getEmoji(w.weather[0].main, this.getTime(w.dt))} mainWeather={w.weather[0].main} maxTemp={w.main.temp_max} minTemp={w.main.temp_min} temp={w.main.temp} time={this.getTime(w.dt)} weather={w.weather[0].description} />)}

@@ -34,11 +34,26 @@ const Degree = (props) => {
 
 export const Card = (props) => {
     return (
-        <div className="card-body" style={{ background: props.backgroundColor }}>
+        <div className="card-body text-center" style={{ background: props.backgroundColor }}>
             <TimeHeader time={props.time} />
             <span className="card-date">{props.date}</span>
             <EmojiWeather weather={props.weather} time={props.time} mainWeather={props.mainWeather} />
             <Degree temp={props.temp} minTemp={props.minTemp} />
         </div>
     );
+};
+export const getEmoji = (weather) => {
+    if (weather === "Clouds") {
+        return "☁️";
+    } else if (weather === "Rain") {
+        return "🌧️";
+    } else if (weather === "Sun") {
+        return "☀️";
+    } else if (weather === "Clear") {
+        return "☀️";
+    } else if (weather === "Snow") {
+        return "❄️";
+    } else if (weather === "Extreme") {
+        return "🌩️";
+    }
 };

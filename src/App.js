@@ -1,16 +1,36 @@
 import React from 'react';
 import './App.css';
 import { API_KEY } from "./config";
-import { Card } from "./Card";
-const City = (props) => <h1><span role="img" title={props.city} aria-label="Round Pushpin">📍</span> {props.city}</h1>;
+import { Card, getEmoji } from "./Components/Card";
+import ProgressBar from "./Components/ProgressBar";
+import TodaysCard from "./Components/TodaysCard";
+
+const City = (props) => <h1 className="text-center"><span role="img" title={props.city} aria-label="Round Pushpin">📍</span> {props.city}</h1>;
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { btnDisabled: false };
     this.coords = null;
   }
   componentDidMount() {
-    if (navigator.geolocation) {
+    this.fetchTodaysWeather();
+  }
+  fetchTodaysWeather() {
+    if (this.hasGeolocation) {
+      navigator.geolocation.getCurrentPosition(async (c) => {
+        this.coords = { longitude: c.coords.longitude, latitude: c.coords.latitude };
+        fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${this.coords.latitude}&lon=${this.coords.longitude}&units=metric&APPID=${API_KEY}`)
+          .then(weather => weather.json())
+          .then(data => this.setState({ current: data }, () => console.log(this.state)));
+      }, () => alert("Permission denied. Can't show weather information."));
+    }
+  }
+  hasGeolocation() {
+    return !!navigator.geolocation;
+  }
+  fetchForecastWeather() {
+    this.setState({ btnDisabled: true });
+    if (this.hasGeolocation()) {
       navigator.geolocation.getCurrentPosition(async (c) => {
         //console.log(`http://api.openweathermap.org/data/2.5/forecast?lat=${c.coords.latitude}&lon=${c.coords.longitude}&units=metric&APPID=${API_KEY}`);
         this.coords = { longitude: c.coords.longitude, latitude: c.coords.latitude };
@@ -21,34 +41,13 @@ class App extends React.Component {
     } else {
       alert("No Geolocation Support!")
     }
+
   }
   getDate(date) {
     return new Date(date * 1000).toLocaleDateString();
   }
   getTime(time) {
     return `${new Date(time * 1000).getHours()}:00`;
-  }
-  getEmoji(weather) {
-    /**
-     * Timezones:
-     * Night: 0-6
-     * Morning: 6-11
-     * Afternoon: 11-18
-     * Evening- 18-0
-     */
-    if (weather === "Clouds") {
-      return "☁️";
-    } else if (weather === "Rain") {
-      return "🌧️";
-    } else if (weather === "Sun") {
-      return "☀️";
-    } else if (weather === "Clear") {
-      return "☀️";
-    } else if (weather === "Snow") {
-      return "❄️";
-    } else if (weather === "Extreme") {
-      return "🌩️";
-    }
   }
   getBackgroundColor(time) {
     const t = parseInt(time);
@@ -66,13 +65,16 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div className="text-center">
-        {this.state.city && this.state.city.name && <City city={this.state.city.name} />}
+      <>
+        <ProgressBar />
+        {this.state.current && this.state.current.name && <City city={this.state.current.name} />}
+        {this.state.current && this.state.current.weather && <TodaysCard emoji={this.state.current.weather[0]} main={this.state.current.main} sys={this.state.current.sys} />}
+        <button disabled={this.state.btnDisabled} onClick={this.fetchForecastWeather.bind(this)} className="btn-fetch">Load 5 day weather forecast</button>
         <div className="container">
           {this.state.list && this.state.list.map((w, index) =>
-            <Card key={index} backgroundColor={this.getBackgroundColor(this.getTime(w.dt))} date={this.getDate(w.dt)} emoji={this.getEmoji(w.weather[0].main, this.getTime(w.dt))} mainWeather={w.weather[0].main} maxTemp={w.main.temp_max} minTemp={w.main.temp_min} temp={w.main.temp} time={this.getTime(w.dt)} weather={w.weather[0].description} />)}
+            <Card key={index} backgroundColor={this.getBackgroundColor(this.getTime(w.dt))} date={this.getDate(w.dt)} emoji={getEmoji(w.weather[0].main, this.getTime(w.dt))} mainWeather={w.weather[0].main} maxTemp={w.main.temp_max} minTemp={w.main.temp_min} temp={w.main.temp} time={this.getTime(w.dt)} weather={w.weather[0].description} />)}
         </div>
-      </div>
+      </>
     );
   }
 }

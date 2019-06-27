@@ -67,3 +67,104 @@ div.card-degree {
   margin-top: 20px;
   display: inherit;
 }
+
+.header {
+  background-color: #f1f1f1;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.progress-container {
+  width: 100%;
+  height: 4px;
+  background: #ccc;
+}
+
+.progress-bar {
+  height: 4px;
+  background: #666666;
+  width: 0%;
+}
+
+.today-weather {
+  background-color: white;
+  border: white;
+  height: 200px;
+  transform: translate(-50%, 0);
+  box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.1);
+  width: 50vw;
+  position: relative;
+  left: 50%;
+}
+
+@media only screen and (max-width: 700px) {
+  .today-weather {
+    width: 100vw;
+  }
+}
+
+.today-weather:hover {
+  box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.1);
+  transform: translate(-50%, -2px);
+}
+
+.today-degree {
+  font-size: 2.3rem;
+  font-weight: bold;
+  display: block;
+  text-align: center;
+}
+
+.today-as-emoji {
+  font-size: 3rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.today-sunrise {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 10px;
+}
+
+.today-sunset {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 10px;
+}
+
+.today-min-max-degree {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  padding: 10px;
+}
+
+.btn-fetch {
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background-color: white;
+  border: 5px solid #ecf0f1;
+  outline: none;
+  padding: 13px 50px;
+  min-width: 50%;
+  font-weight: 800;
+  font-stretch: extra-expanded;
+  font-size: medium;
+  margin: 10px 0 10px 0;
+  border-radius: 6px;
+}
+
+.btn-fetch:hover {
+  background-color: #ecf0f1;
+  border: 5px solid #ecf0f1;
+}

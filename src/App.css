@@ -24,8 +24,9 @@ body {
 }
 
 .card-body:hover {
-  transform: translateY(-2px);
+  background-color: #efefef;
   box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
 }
 
 .card-time {
@@ -49,7 +50,8 @@ div.card-degree {
 }
 
 .card-degree {
-  font-size: 2.3rem;
+  font-size: 1.9rem;
+  font-weight: bold;
 }
 
 .card-min-degree {
@@ -107,6 +109,7 @@ div.card-degree {
 }
 
 .today-weather:hover {
+  background-color: #efefef;
   box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.1);
   transform: translate(-50%, -2px);
 }
@@ -116,6 +119,11 @@ div.card-degree {
   font-weight: bold;
   display: block;
   text-align: center;
+}
+
+.today-city {
+  border-bottom: 4px solid #80808063;
+  padding: 0 5px;
 }
 
 .today-as-emoji {
@@ -149,8 +157,10 @@ div.card-degree {
 }
 
 .btn-fetch {
+  transition: opacity 0.5s ease-out;
   position: relative;
   left: 50%;
+  opacity: 1;
   transform: translate(-50%, 0);
   background-color: white;
   border: 5px solid #ecf0f1;

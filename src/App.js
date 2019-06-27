@@ -5,7 +5,7 @@ import { Card, getEmoji } from "./Components/Card";
 import ProgressBar from "./Components/ProgressBar";
 import TodaysCard from "./Components/TodaysCard";
 
-const City = (props) => <h1 className="text-center"><span role="img" title={props.city} aria-label="Round Pushpin">📍</span> {props.city}</h1>;
+const City = (props) => <h1 className="text-center"><span role="img" title={props.city} aria-label="Round Pushpin">📍</span> <span className="today-city">{props.city}</span></h1>;
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -75,7 +75,7 @@ class App extends React.Component {
         {this.state.geoAccess && <ProgressBar />}
         {this.state.current && this.state.current.name && <City city={this.state.current.name} />}
         {this.state.current && this.state.current.weather && <TodaysCard emoji={this.state.current.weather[0]} main={this.state.current.main} sys={this.state.current.sys} />}
-        {this.state.geoAccess && <button disabled={this.state.btnDisabled} onClick={this.fetchForecastWeather.bind(this)} className="btn-fetch">Load 5 day weather forecast</button>}
+        {this.state.current && this.state.geoAccess && <button disabled={this.state.btnDisabled} style={{ opacity: this.state.btnDisabled ? "0" : "1" }} onClick={this.fetchForecastWeather.bind(this)} className="btn-fetch">Load 5 day weather forecast</button>}
         {this.state.geoAccess && <div className="container">
           {this.state.list && this.state.list.map((w, index) =>
             <Card key={index} date={this.getDate(w.dt)} emoji={getEmoji(w.weather[0].main, this.getTime(w.dt))} mainWeather={w.weather[0].main} maxTemp={w.main.temp_max} minTemp={w.main.temp_min} temp={w.main.temp} time={this.getTime(w.dt)} weather={w.weather[0].description} />)}

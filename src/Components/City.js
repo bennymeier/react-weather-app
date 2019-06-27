@@ -1,11 +1,12 @@
 import React from "react";
 import { getEmoji } from "./Card";
+import Toggle from "./Toggle";
 export default (props) => {
     const emoji = getEmoji(props.current.weather[0].main);
     if (props.fix) {
         return (
             <div className="today-sticky-container">
-                {/* <span>Dark Mode</span> */}
+                <Toggle />
                 <h1 className="text-center" style={{ margin: "0 0 10px 0" }}>
                     <span role="img" title={props.current.name} aria-label="Round Pushpin">📍</span>
                     <span className="today-city">{props.current.name}</span>
@@ -20,6 +21,7 @@ export default (props) => {
     } else {
         return (
             <div>
+                <Toggle />
                 <h1 className="text-center">
                     <span role="img" title={props.current.name} aria-label="Round Pushpin">📍</span>
                     <span className="today-city">{props.current.name}</span>

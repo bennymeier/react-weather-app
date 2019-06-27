@@ -7,28 +7,18 @@ import TodaysCard from "./Components/TodaysCard";
 import City from "./Components/City";
 import { getDate, getTime, hasGeolocationSupport } from "./Helpers";
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { btnDisabled: false, fixCity: false, geoAccess: null };
+    this.state = { btnDisabled: false, darkMode: false, fixCity: false, geoAccess: null };
     this.coords = null;
     this.onScroll = this.onScroll.bind(this);
+    this.PERMISSION_DENIED = "Permission denied. Can't show weather information.";
   }
   componentDidMount() {
     if (hasGeolocationSupport()) {
       this.fetchTodaysWeather();
       this.onScroll();
-    }
-  }
-  onScroll() {
-    window.addEventListener("scroll", this.fixCityBar.bind(this));
-  }
-  fixCityBar() {
-    if (window.scrollY > 70 && !this.state.fixCity) {
-      this.setState({ fixCity: true });
-    } else if (window.scrollY <= 70 && this.state.fixCity) {
-      this.setState({ fixCity: false })
     }
   }
   componentWillUnmount() {
@@ -40,16 +30,25 @@ class App extends React.Component {
       fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${this.coords.latitude}&lon=${this.coords.longitude}&units=metric&APPID=${API_KEY}`)
         .then(weather => weather.json())
         .then(data => this.setState({ current: data, geoAccess: true }, () => console.log(this.state)));
-    }, () => alert("Permission denied. Can't show weather information."));
+    }, () => alert(this.PERMISSION_DENIED));
   }
   fetchForecastWeather() {
     navigator.geolocation.getCurrentPosition(async (c) => {
-      //console.log(`http://api.openweathermap.org/data/2.5/forecast?lat=${c.coords.latitude}&lon=${c.coords.longitude}&units=metric&APPID=${API_KEY}`);
       this.coords = { longitude: c.coords.longitude, latitude: c.coords.latitude };
       fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${this.coords.latitude}&lon=${this.coords.longitude}&units=metric&APPID=${API_KEY}`)
         .then(weather => weather.json())
         .then(data => this.setState({ ...data, btnDisabled: true, geoAccess: true }, () => console.log(this.state)));
-    }, () => alert("Permission denied. Can't show weather information."));
+    }, () => alert(this.PERMISSION_DENIED));
+  }
+  fixCityBar() {
+    if (window.scrollY > 70 && !this.state.fixCity) {
+      this.setState({ fixCity: true });
+    } else if (window.scrollY <= 70 && this.state.fixCity) {
+      this.setState({ fixCity: false })
+    }
+  }
+  onScroll() {
+    window.addEventListener("scroll", this.fixCityBar.bind(this));
   }
   render() {
     return (

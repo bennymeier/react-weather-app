@@ -34,7 +34,7 @@ const Degree = (props) => {
 
 export const Card = (props) => {
     return (
-        <div className="card-body text-center" style={{ background: props.backgroundColor }}>
+        <div className="card-body text-center">
             <TimeHeader time={props.time} />
             <span className="card-date">{props.date}</span>
             <EmojiWeather weather={props.weather} time={props.time} mainWeather={props.mainWeather} />

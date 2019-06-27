@@ -10,7 +10,6 @@ export default (props) => {
         const minutes = date.getMinutes();
         return `${hour}:${minutes}`;
     };
-    console.log(props);
     const weatherEmoji = getEmoji(emoji.main);
     return (
         <section className="today-weather">

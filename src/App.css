@@ -126,6 +126,27 @@ div.card-degree {
   padding: 0 5px;
 }
 
+.today-sticky-container>span>span {
+  padding: 0 5px 0 0;
+}
+
+.today-sticky-container {
+  position: fixed;
+  top: 4px;
+  width: 100%;
+  height: 58px;
+  z-index: 1;
+  background: white;
+}
+
+.today-sticky-temperature {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 15px 20px;
+  font-weight: bold;
+}
+
 .today-as-emoji {
   font-size: 3rem;
   position: absolute;
@@ -163,7 +184,7 @@ div.card-degree {
   opacity: 1;
   transform: translate(-50%, 0);
   background-color: white;
-  border: 5px solid #ecf0f1;
+  border: 5px solid #efefef;
   outline: none;
   padding: 13px 50px;
   min-width: 50%;
@@ -175,6 +196,6 @@ div.card-degree {
 }
 
 .btn-fetch:hover {
-  background-color: #ecf0f1;
-  border: 5px solid #ecf0f1;
+  background-color: #efefef;
+  border: 5px solid #efefef;
 }

@@ -1,3 +1,4 @@
+![Example image of Freiburg](https://raw.githubusercontent.com/bennymeier/react-weather-app/master/weather.PNG)
 ## Available Scripts
 ### `npm start`
 

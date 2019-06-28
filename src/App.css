@@ -7,6 +7,25 @@ body.dark {
   background-color: #6b6b6b;
 }
 
+a {
+  color: blue;
+  text-decoration: none;
+}
+
+a:hover {
+  color: cornflowerblue;
+  text-decoration: none;
+}
+
+a:active {
+  color: cornflowerblue;
+  text-decoration: none;
+}
+
+.no-margin {
+  margin: 0;
+}
+
 .container {
   display: flex;
   flex-wrap: wrap;
@@ -15,6 +34,20 @@ body.dark {
 
 .text-center {
   text-align: center;
+}
+
+.heading-location-access {
+  position: fixed;
+  top: 28%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.center-item {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .card-body {
@@ -28,15 +61,25 @@ body.dark {
   position: relative;
 }
 
+body.dark .card-body {
+  transition: all 0.2s;
+  box-shadow: 0 2rem 6rem rgba(255, 255, 255, 0.14);
+  border-radius: 5px;
+  width: 400px;
+  height: 150px;
+  margin: 10px;
+  position: relative;
+}
+
 .card-body:hover {
   background-color: #efefef;
-  box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.15);
   transform: translateY(-2px);
 }
 
 body.dark .card-body:hover {
   background-color: #6d6d6d;
-  box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2rem 6rem rgba(255, 255, 255, 0.22);
   transform: translateY(-2px);
 }
 
@@ -120,11 +163,20 @@ body.dark .progress-bar {
 }
 
 .today-weather {
-  /* background-color: white; */
   border: white;
   height: 200px;
   transform: translate(-50%, 0);
   box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.1);
+  width: 50vw;
+  position: relative;
+  left: 50%;
+}
+
+body.dark .today-weather {
+  border: white;
+  height: 200px;
+  transform: translate(-50%, 0);
+  box-shadow: 0 2rem 6rem rgba(255, 255, 255, 0.14);
   width: 50vw;
   position: relative;
   left: 50%;
@@ -138,13 +190,13 @@ body.dark .progress-bar {
 
 .today-weather:hover {
   background-color: #efefef;
-  box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.15);
   transform: translate(-50%, -2px);
 }
 
 body.dark .today-weather:hover {
   background-color: #6d6d6d;
-  box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2rem 6rem rgba(255, 255, 255, 0.22);
   transform: translate(-50%, -2px);
 }
 

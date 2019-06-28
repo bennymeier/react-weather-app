@@ -1,6 +1,7 @@
 import React from 'react';
-const TimeHeader = (props) => <h2 className="card-time">{props.time}</h2>;
+import Emoji from "./Emoji";
 
+const TimeHeader = (props) => <h2 className="card-time">{props.time}</h2>;
 const EmojiWeather = (props) => {
     const getEmoji = () => {
         const w = props.mainWeather;
@@ -20,7 +21,7 @@ const EmojiWeather = (props) => {
         }
     };
     return (
-        <span className="card-weather-emoji" role="img" title={props.weather} aria-label={props.weather}>{getEmoji()}</span>
+        <Emoji className="card-weather-emoji" name={props.weather} emoji={getEmoji()} />
     );
 };
 

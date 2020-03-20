@@ -4,7 +4,7 @@ export default class Toggle extends React.Component {
         super();
         this.state = { isDark: false };
     }
-    componentDidMount() {
+    componentDidMount = () => {
         const isDarkMode = () => {
             if (localStorage.getItem("darkMode") === "false") {
                 return false;
@@ -13,11 +13,12 @@ export default class Toggle extends React.Component {
             } else {
                 return false;
             }
-        }
+        };
         this.setState({ isDark: isDarkMode() }, () => this.setInitialClass());
-    }
-    changeMode() {
-        const isDarkMode = !this.state.isDark;
+    };
+    changeMode = () => {
+        const { isDark } = this.state;
+        const isDarkMode = !isDark;
         this.setState({ isDark: isDarkMode }, () => {
             localStorage.setItem("darkMode", `${isDarkMode}`);
             if (this.state.isDark) {
@@ -27,14 +28,16 @@ export default class Toggle extends React.Component {
             }
         });
     };
-    setInitialClass() {
-        if (this.state.isDark) {
+    setInitialClass = () => {
+        const { isDark } = this.state;
+        if (isDark) {
             document.body.classList.add("dark");
         } else {
             document.body.classList.remove("dark");
         }
-    }
+    };
     render() {
-        return (<input className="switch" checked={this.state.isDark} onChange={this.changeMode.bind(this)} type="checkbox" />);
+        const { isDark } = this.state;
+        return (<input className="switch" checked={isDark} onChange={this.changeMode} type="checkbox" />);
     }
 };

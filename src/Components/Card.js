@@ -1,11 +1,11 @@
 import React from 'react';
 import Emoji from "./Emoji";
 
-const TimeHeader = (props) => <h2 className="card-time">{props.time}</h2>;
+const TimeHeader = ({ time }) => <h2 className="card-time">{time}</h2>;
 const EmojiWeather = (props) => {
+    const { mainWeather: w, time, weather } = props;
     const getEmoji = () => {
-        const w = props.mainWeather;
-        const t = parseInt(props.time);
+        const t = parseInt(time);
         if (w === "Clouds") {
             return "☁️";
         } else if (w === "Rain") {
@@ -21,25 +21,29 @@ const EmojiWeather = (props) => {
         }
     };
     return (
-        <Emoji className="card-weather-emoji" name={props.weather} emoji={getEmoji()} />
+        <Emoji className="card-weather-emoji" name={weather} emoji={getEmoji()} />
     );
 };
 
 const Degree = (props) => {
+    const { temp, minTemp } = props;
+    const temperature = Math.round(temp);
+    const minTemperature = Math.round(minTemp);
     return (
         <div className="card-degree">
-            <span className="card-degree">{props.temp}°</span> <span className="card-separator">|</span> <span className="card-min-degree">{props.minTemp}°</span>
+            <span className="card-degree">{temperature}°</span> <span className="card-separator">|</span> <span className="card-min-degree">{minTemperature}°</span>
         </div>
     );
 };
 
 export const Card = (props) => {
+    const { time, date, minTemp, mainWeather, temp, weather } = props;
     return (
         <div className="card-body text-center">
-            <TimeHeader time={props.time} />
-            <span className="card-date">{props.date}</span>
-            <EmojiWeather weather={props.weather} time={props.time} mainWeather={props.mainWeather} />
-            <Degree temp={props.temp} minTemp={props.minTemp} />
+            <TimeHeader time={time} />
+            <span className="card-date">{date}</span>
+            <EmojiWeather weather={weather} time={time} mainWeather={mainWeather} />
+            <Degree temp={temp} minTemp={minTemp} />
         </div>
     );
 };

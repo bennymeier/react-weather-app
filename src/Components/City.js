@@ -3,18 +3,19 @@ import { getEmoji } from "./Card";
 import Toggle from "./Toggle";
 import Emoji from "./Emoji";
 export default (props) => {
-    const emoji = getEmoji(props.current.weather[0].main);
-    if (props.fix) {
+    const { current, fix } = props;
+    const emoji = getEmoji(current.weather[0].main);
+    if (fix) {
         return (
             <div className="today-sticky-container">
                 <Toggle />
                 <h1 className="text-center" style={{ margin: "0 0 10px 0" }}>
-                    <Emoji name={props.current.name} emoji="📍" />
-                    <Emoji className="today-city" name={props.current.name} emoji={props.current.name} />
+                    <Emoji name={current.name} emoji="📍" />
+                    <Emoji className="today-city" name={current.name} emoji={current.name} />
                 </h1>
                 <span className="today-sticky-temperature">
-                    <Emoji name={props.current.weather[0].description} emoji={emoji} />
-                    {props.current.main.temp}°
+                    <Emoji name={current.weather[0].description} emoji={emoji} />
+                    {current.main.temp}°
                 </span>
             </div>);
     } else {
@@ -22,8 +23,8 @@ export default (props) => {
             <div>
                 <Toggle />
                 <h1 className="text-center">
-                    <Emoji name={props.current.name} emoji="📍" />
-                    <span className="today-city">{props.current.name}</span>
+                    <Emoji name={current.name} emoji="📍" />
+                    <span className="today-city">{current.name}</span>
                 </h1>
             </div>);
     }

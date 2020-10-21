@@ -33,44 +33,20 @@ class App extends React.Component {
     window.removeEventListener("scroll", this.fixCityBar);
   };
   fetchTodaysWeather = () => {
-    navigator.geolocation.getCurrentPosition(
-      (c) => {
-        this.coords = {
-          longitude: c.coords.longitude,
-          latitude: c.coords.latitude,
-        };
-        fetch(
-          `http://api.openweathermap.org/data/2.5/weather?lat=${this.coords.latitude}&lon=${this.coords.longitude}&units=metric&APPID=${API_KEY}`
-        )
-          .then((weather) => weather.json())
-          .then((data) =>
-            this.setState({ current: data, geoAccess: true }, () =>
-              console.log(this.state)
-            )
-          );
-      },
-      () => alert(PERMISSION_DENIED)
-    );
+    navigator.geolocation.getCurrentPosition((c) => {
+      this.coords = { longitude: c.coords.longitude, latitude: c.coords.latitude };
+      fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${this.coords.latitude}&lon=${this.coords.longitude}&units=metric&APPID=${API_KEY}`)
+        .then(weather => weather.json())
+        .then(data => this.setState({ current: data, geoAccess: true }, () => console.log(this.state)));
+    }, () => alert(PERMISSION_DENIED));
   };
   fetchForecastWeather = () => {
-    navigator.geolocation.getCurrentPosition(
-      (c) => {
-        this.coords = {
-          longitude: c.coords.longitude,
-          latitude: c.coords.latitude,
-        };
-        fetch(
-          `http://api.openweathermap.org/data/2.5/forecast?lat=${this.coords.latitude}&lon=${this.coords.longitude}&units=metric&APPID=${API_KEY}`
-        )
-          .then((weather) => weather.json())
-          .then((data) =>
-            this.setState({ ...data, btnDisabled: true, geoAccess: true }, () =>
-              console.log(this.state)
-            )
-          );
-      },
-      () => alert(PERMISSION_DENIED)
-    );
+    navigator.geolocation.getCurrentPosition((c) => {
+      this.coords = { longitude: c.coords.longitude, latitude: c.coords.latitude };
+      fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${this.coords.latitude}&lon=${this.coords.longitude}&units=metric&APPID=${API_KEY}`)
+        .then(weather => weather.json())
+        .then(data => this.setState({ ...data, btnDisabled: true, geoAccess: true }, () => console.log(this.state)));
+    }, () => alert(PERMISSION_DENIED));
   };
   fixCityBar = () => {
     const { fixCity } = this.state;

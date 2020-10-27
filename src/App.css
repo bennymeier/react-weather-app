@@ -8,6 +8,14 @@
   justify-content: center;
 }
 
+body.dark .weather-wrapper .weather-card:hover {
+  transform: translate(0, 1em);
+}
+
+body.dark .weather-card {
+  background-color: #a4a4a4;
+}
+
 .weather-card {
   margin: 20px 5px;
   border-radius: 20px;
@@ -441,7 +449,13 @@ body.dark .today-sticky-container {
   padding: 10px;
 }
 
+body.dark .btn-fetch {
+  background-color: #a4a4a4;
+  border-color: #3a3a3a;
+}
+
 .btn-fetch {
+  cursor: pointer;
   transition: opacity 0.5s ease-out;
   position: relative;
   left: 50%;

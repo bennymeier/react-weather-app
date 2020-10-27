@@ -385,7 +385,7 @@ body.dark .today-city {
 }
 
 .today-sticky-container {
-  position: fixed;
+  position: sticky;
   top: 4px;
   width: 100%;
   height: 58px;

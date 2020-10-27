@@ -1,15 +1,8 @@
 /** NEW */
 
 .weather-wrapper {
-  margin-top: 20px;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
   justify-content: center;
-}
-
-body.dark .weather-wrapper .weather-card:hover {
-  transform: translate(0, 1em);
 }
 
 body.dark .weather-card {

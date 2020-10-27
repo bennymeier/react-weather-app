@@ -19,19 +19,23 @@ class App extends React.Component {
       darkMode: false,
       fixCity: false,
       geoAccess: null,
+      forecasts: []
     };
     this.coords = null;
     this.onScroll = this.onScroll.bind(this);
   }
+
   componentDidMount() {
     if (hasGeolocationSupport()) {
       this.fetchTodaysWeather();
       this.onScroll();
     }
   }
+
   componentWillUnmount = () => {
     window.removeEventListener("scroll", this.fixCityBar);
   };
+
   fetchTodaysWeather = () => {
     navigator.geolocation.getCurrentPosition((c) => {
       this.coords = { longitude: c.coords.longitude, latitude: c.coords.latitude };
@@ -40,14 +44,20 @@ class App extends React.Component {
         .then(data => this.setState({ current: data, geoAccess: true }, () => console.log(this.state)));
     }, () => alert(PERMISSION_DENIED));
   };
+
   fetchForecastWeather = () => {
     navigator.geolocation.getCurrentPosition((c) => {
       this.coords = { longitude: c.coords.longitude, latitude: c.coords.latitude };
       fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${this.coords.latitude}&lon=${this.coords.longitude}&units=metric&APPID=${API_KEY}`)
         .then(weather => weather.json())
-        .then(data => this.setState({ ...data, btnDisabled: true, geoAccess: true }, () => console.log(this.state)));
+        .then(data => {
+          // Take every 8th forecast: 40 forecasts/5 days = 8
+          const forecasts = data.list.filter((_, index) => index % 8 === 0);
+          this.setState({ ...data, forecasts, btnDisabled: true, geoAccess: true }, ()=> console.log(this.state.forecasts))
+        });
     }, () => alert(PERMISSION_DENIED));
   };
+
   fixCityBar = () => {
     const { fixCity } = this.state;
     if (window.scrollY > 70 && !fixCity) {
@@ -60,7 +70,7 @@ class App extends React.Component {
     window.addEventListener("scroll", this.fixCityBar);
   }
   render() {
-    const { geoAccess, current, fixCity, btnDisabled, list } = this.state;
+    const { geoAccess, current, fixCity, btnDisabled, forecasts } = this.state;
     if (geoAccess && current && !!API_KEY) {
       return (
         <>
@@ -81,7 +91,7 @@ class App extends React.Component {
           </button>
           {this.state.list && (
             <div className="container">
-              {list.map((w, index) => (
+              {forecasts.map((w, index) => (
                 <Card
                   key={index}
                   date={getDate(w.dt)}

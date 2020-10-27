@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import { API_KEY } from "./config";
-import { Card, getEmoji } from "./Components/Card";
+import { Card, getEmojiClassName } from "./Components/Card";
 import ProgressBar from "./Components/ProgressBar";
 import TodaysCard from "./Components/TodaysCard";
 import City from "./Components/City";
@@ -69,7 +69,6 @@ class App extends React.Component {
           <TodaysCard
             emoji={current.weather[0]}
             main={current.main}
-            sys={current.sys}
             city={current.name}
           />
           <button
@@ -86,7 +85,7 @@ class App extends React.Component {
                 <Card
                   key={index}
                   date={getDate(w.dt)}
-                  emoji={getEmoji(w.weather[0].main, getTime(w.dt))}
+                  emoji={getEmojiClassName(w.weather[0].main, getTime(w.dt))}
                   mainWeather={w.weather[0].main}
                   maxTemp={w.main.temp_max}
                   minTemp={w.main.temp_min}

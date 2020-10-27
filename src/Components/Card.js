@@ -47,18 +47,11 @@ export const Card = (props) => {
         </div>
     );
 };
-export const getEmoji = (weather) => {
+export const getEmojiClassName = (weather) => {
     if (weather === "Clouds") {
-        return "☁️";
+        return "cloud";
     } else if (weather === "Rain") {
-        return "🌧️";
-    } else if (weather === "Sun") {
-        return "☀️";
-    } else if (weather === "Clear") {
-        return "☀️";
-    } else if (weather === "Snow") {
-        return "❄️";
-    } else if (weather === "Extreme") {
-        return "🌩️";
+        return "rain";
     }
+    return "sun";
 };

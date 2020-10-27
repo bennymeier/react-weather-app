@@ -1,10 +1,11 @@
 import React from "react";
-import { getEmoji } from "./Card";
+import { getEmojiClassName } from "./Card";
 import Toggle from "./Toggle";
 import Emoji from "./Emoji";
-export default (props) => {
+
+const City = (props) => {
     const { current, fix } = props;
-    const emoji = getEmoji(current.weather[0].main);
+    const emoji = getEmojiClassName(current.weather[0].main);
     if (fix) {
         return (
             <div className="today-sticky-container">
@@ -29,3 +30,5 @@ export default (props) => {
             </div>);
     }
 };
+
+export default City;

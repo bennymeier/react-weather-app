@@ -85,7 +85,7 @@ class App extends React.Component {
           />
           <button
             disabled={btnDisabled}
-            style={{ opacity: btnDisabled ? "0" : "1" }}
+            style={{ opacity: btnDisabled ? "0" : "1", visibility: btnDisabled ? "hidden" : ""}}
             onClick={this.fetchForecastWeather.bind(this)}
             className="btn-fetch"
           >

@@ -25,7 +25,6 @@ body.dark .weather-card {
   position: absolute;
   font-weight: 300;
   font-size: 80px;
-  color: #000000;
   bottom: 0;
   left: 35px;
   opacity: 0;
@@ -38,7 +37,6 @@ body.dark .weather-card {
   font-family: "Lato", sans-serif;
   font-weight: 300;
   font-size: 28px;
-  color: #000000;
   bottom: 0;
   left: 35px;
   animation: title-appear 1s ease-out 500ms forwards;
@@ -467,14 +465,22 @@ body.dark .btn-fetch {
 }
 
 .btn-fetch:hover {
-  background-color: #efefef;
+  background-color: #efefef !important;
   border: 5px solid #efefef;
+}
+
+body.dark .btn-fetch {
+  color: white;
+}
+
+body.dark .btn-fetch:hover {
+  background-color: white;
+  color: black;
 }
 
 body.dark .switch {
   -webkit-appearance: none;
   background-color: #ffffff;
-  cursor: pointer;
   cursor: pointer;
 }
 
@@ -492,8 +498,6 @@ body.dark .switch {
   margin: 15px 20px;
   outline: none;
 }
-
-
 
 .switch::after {
   top: 1px;

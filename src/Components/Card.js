@@ -31,7 +31,7 @@ const Degree = (props) => {
     const minTemperature = Math.round(minTemp);
     return (
         <div className="card-degree">
-            <span className="card-degree">{temperature}°</span> <span className="card-separator">|</span> <span className="card-min-degree">{minTemperature}°</span>
+            <span className="card-degree">{temperature}°C</span> <span className="card-separator">|</span> <span className="card-min-degree">{minTemperature}°C</span>
         </div>
     );
 };

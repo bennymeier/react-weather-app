@@ -41,7 +41,7 @@ class App extends React.Component {
       this.coords = { longitude: c.coords.longitude, latitude: c.coords.latitude };
       fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${this.coords.latitude}&lon=${this.coords.longitude}&units=metric&APPID=${API_KEY}`)
         .then(weather => weather.json())
-        .then(data => this.setState({ current: data, geoAccess: true }, () => console.log(this.state)));
+        .then(data => this.setState({ current: data, geoAccess: true }));
     }, () => alert(PERMISSION_DENIED));
   };
 
@@ -53,7 +53,7 @@ class App extends React.Component {
         .then(data => {
           // Take every 8th forecast: 40 forecasts/5 days = 8
           const forecasts = data.list.filter((_, index) => index % 8 === 0);
-          this.setState({ ...data, forecasts, btnDisabled: true, geoAccess: true }, ()=> console.log(this.state.forecasts))
+          this.setState({ ...data, forecasts, btnDisabled: true, geoAccess: true })
         });
     }, () => alert(PERMISSION_DENIED));
   };
@@ -66,9 +66,11 @@ class App extends React.Component {
       this.setState({ fixCity: false });
     }
   };
+
   onScroll() {
     window.addEventListener("scroll", this.fixCityBar);
   }
+
   render() {
     const { geoAccess, current, fixCity, btnDisabled, forecasts } = this.state;
     if (geoAccess && current && !!API_KEY) {

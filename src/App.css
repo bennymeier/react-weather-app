@@ -34,7 +34,7 @@ body.dark .weather-card {
 
 .weather-card p {
   position: absolute;
-  font-family: "Lato", sans-serif;
+  font-family: 'Lato', sans-serif;
   font-weight: 300;
   font-size: 28px;
   bottom: 0;
@@ -53,10 +53,11 @@ body.dark .weather-card {
 }
 
 .sun {
-  background: #FFCD41;
+  background: #ffcd41;
   border-radius: 50%;
   box-shadow: rgba(255, 255, 0, 0.1) 0 0 0 4px;
-  animation: light 800ms ease-in-out infinite alternate, weather-icon-move 5s ease-in-out infinite;
+  animation: light 800ms ease-in-out infinite alternate,
+    weather-icon-move 5s ease-in-out infinite;
 }
 
 @keyframes light {
@@ -68,17 +69,19 @@ body.dark .weather-card {
   }
 }
 
-.cloud, .rain {
+.cloud,
+.rain {
   margin-right: 60px;
   background: #b6cede;
   border-radius: 20px;
   width: 25px;
   height: 25px;
-  box-shadow: #b6cede 24px -6px 0 2px, #b6cede 10px 5px 0 5px, #b6cede 30px 5px 0 2px, #b6cede 11px -8px 0 -3px, #b6cede 25px 11px 0 -1px;
+  box-shadow: #b6cede 24px -6px 0 2px, #b6cede 10px 5px 0 5px,
+    #b6cede 30px 5px 0 2px, #b6cede 11px -8px 0 -3px, #b6cede 25px 11px 0 -1px;
 }
 
 .cloud:after {
-  content: "";
+  content: '';
   position: absolute;
   border-radius: 10px;
   background-color: transparent;
@@ -90,7 +93,7 @@ body.dark .weather-card {
 }
 
 .rain:after {
-  content: "";
+  content: '';
   position: absolute;
   border-radius: 10px;
   background-color: transparent;
@@ -104,10 +107,10 @@ body.dark .weather-card {
 
 @keyframes rain {
   from {
-    box-shadow: #2092A9 8px 0px, #2092A9 32px -6px, #2092A9 20px 0px;
+    box-shadow: #2092a9 8px 0px, #2092a9 32px -6px, #2092a9 20px 0px;
   }
   to {
-    box-shadow: #2092A9 8px 6px, #2092A9 32px 0px, #2092A9 20px 6px;
+    box-shadow: #2092a9 8px 6px, #2092a9 32px 0px, #2092a9 20px 6px;
   }
 }
 
@@ -120,14 +123,14 @@ body.dark .weather-card {
 .inspiration {
   margin-top: 80px;
   color: #709fbe;
-  font-family: "Lato", sans-serif;
+  font-family: 'Lato', sans-serif;
   font-weight: 300;
   font-size: 24px;
   text-align: center;
 }
 
 .inspiration a {
-  color: #FF8F8F;
+  color: #ff8f8f;
   font-weight: 400;
   animation: all 300ms ease-in-out;
 }
@@ -189,8 +192,7 @@ a:active {
 }
 
 .container {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
   justify-content: center;
 }
 
@@ -217,7 +219,7 @@ a:active {
   box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.1);
   /* background-color: #fff; */
   border-radius: 5px;
-  width: 400px;
+  min-width: 300px;
   height: 150px;
   margin: 10px;
   position: relative;
@@ -256,6 +258,7 @@ body.dark .card-body:hover {
   bottom: 0;
   padding: 0 0 10px 10px;
   position: absolute;
+  font-weight: bold;
 }
 
 div.card-degree {
@@ -380,7 +383,7 @@ body.dark .today-city {
   padding: 0 5px;
 }
 
-.today-sticky-container>span>span {
+.today-sticky-container > span > span {
   padding: 0 5px 0 0;
 }
 
